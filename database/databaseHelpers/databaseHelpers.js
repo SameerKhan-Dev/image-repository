@@ -1,5 +1,5 @@
 
-const pool = require('../database');
+
 const db = require('../database');
 /*
 const randomFunction = function () {
