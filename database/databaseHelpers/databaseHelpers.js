@@ -41,7 +41,16 @@ const getResourceData = function (resource_id) {
   });
 
 }
+// get all resources
+const getAllResources = function () {
 
+  return db.query(
+    `SELECT * FROM images;
+  `)
+  .then(result => {
+    return result.rows;
+  });
+}
 
 // find all resources matching certain search parameters
 
@@ -52,12 +61,37 @@ const getResourceData = function (resource_id) {
 // delete a resource from the repository
 
 
-// add a resource to the repository
 
+  // add a resource to the repository
+const addResource = function (owner_id, title,filePath, description) {
+
+  return db.query(
+    `INSERT INTO images (owner_id, title, filePath, description)
+     VALUES (${owner_id}, '${title}', '${filePath}', '${description}')
+     RETURNING *;
+  `)
+  .then(result => {
+    return result.rows;
+  });
+
+}
 
 // add a user to the database
+
+const addUser = function (user_name, email, password) {
+
+  return db.query(
+    `INSERT INTO users (username, email, password)
+     VALUES ('${user_name}','${email}', '${password}')
+     RETURNING *;
+  `)
+  .then(result => {
+    return result.rows;
+  });
+
+}
 
 
 // check if the existing email already exists or not in the database
 
-module.exports = {getUserData, getResourceData};
+module.exports = {getAllResources, getUserData, getResourceData, addUser, addResource};
