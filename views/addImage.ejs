@@ -1,0 +1,62 @@
+<head>
+	<title>Register Page - Image Repository</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/registerPage.css" type="text/css" />
+  
+  <style>
+    body {
+      background-image: url(backgroundImage.jpg);
+    }
+    #addResourceForm {
+
+      border-radius: 25px;
+      
+
+    }
+  </style>
+
+</head>
+<header>
+  <%- include('partials/header') %>
+</header>
+<body> 
+  <div style = "padding-left: 20%; padding-right: 20%">
+    <h3 style = "color:#4B0082 " class="text-center text-success pt-5"> NEW IMAGE FORM</h3>
+    <form style = "background-color: #e6e6e6; padding: 5%;" id = "addResourceForm" method = "post" class ="form" action = "/images/addResource">
+      <div class="form-group">
+        <label for="user-name"><b>Title</b></label>
+        <input type="text" name = "title" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Enter a title...">
+      </div> 
+      <div class="form-group">
+        <label for="user-name"><b>Description</b></label>
+        <input type="text" name = "description" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Enter a user name...">
+      </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1"><b>Select image to upload!</b></label>
+          <input accept="image/*" type="file" name = "imageUpload" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <span><b>Choose Tags/categories for your image!</b></span><br>
+        <br>
+        <input type="radio" id="Sports" name="category_id" value="1">
+        <label for="Sports">Sports</label><br>
+        <input type="radio" id="Business" name="category_id" value="2">
+        <label for="Business">Business</label><br>
+        <input type="radio" id="Education" name="category_id" value="3">
+        <label for="Education">Education</label>
+        <input type="radio" id="Food" name="category_id" value="4">
+        <label for="Food">Food</label><br>
+        <input type="radio" id="Travel" name="category_id" value="5">
+        <label for="Travel">Travel</label><br>
+        <input type="radio" id="Entertainment" name="category_id" value="6">
+        <label for="Travel">Entertainment</label><br>
+        <input type="radio" id="Entertainment" name="category_id" value="6">
+        <label for="Travel">Other</label><br>
+        
+        <button style ="background-color:#4B0082" type="submit" class="btn btn-primary">Add Image!</button>
+       
+    </form>
+  </div>
+</body>
