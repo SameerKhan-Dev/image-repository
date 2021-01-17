@@ -33,7 +33,7 @@ router.get("/myImages", (req, res) => {
   let user_id = req.session.user_id;
   let allImages;
   let email;
-  let category;
+ 
   
   if(user_id){
     
@@ -55,7 +55,7 @@ router.get("/myImages", (req, res) => {
 
         allImages: allImages,
         email: email,
-        category: category
+        
       }
       console.log("allImages variable inside myImages is: ", allImages);
       res.render('myImagesList', templateVars);
@@ -69,6 +69,56 @@ router.get("/myImages", (req, res) => {
   }
 
 });
+
+
+router.post("/search", (req, res) => {
+  // check if user is logged in and if yes, otherwise redirect to index page with message.
+  let user_id = req.session.user_id;
+
+  if(user_id) {
+
+    let searchInput = req.body.searchInput;
+    let email;
+    let allImages;
+    console.log("SEARCH INPUT IS: ", searchInput);
+    
+
+    databaseHelper.getUserData(user_id)
+    .then(result => {
+
+      email = result.email;
+
+      //res.send(result);
+
+      //console.log('result is: ', result);
+      // get all resources from the user
+      return databaseHelper.getAllImagesMatchingSearch(searchInput);
+
+      // send the templateVars with all the resources inside ejs template.
+
+    }).then(result => {
+
+      allImages = result;
+
+      //resourceDate = allResources.created_at;
+
+      let templateVars = {
+
+        allImages: allImages,
+        email: email,
+     
+      }
+
+      res.render("myImagesList", templateVars);
+
+    });
+  }else {
+    res.send("Please login or register to view requested page");
+    console.log("Please login or register to view requested page");
+  }
+
+});
+
 
 router.get("/user/:image_id", (req, res) => {
 

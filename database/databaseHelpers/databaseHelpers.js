@@ -100,17 +100,15 @@ const addImage = function (owner_id, title,filePath, description, category) {
 
 }
 
-const getAllResourcesMatchingSearch = function (searchInput) {
-  //searchInput = 'ball';
-  return pool.query(`
+const getAllImagesMatchingSearch = function (searchInput, user_id) {
+  
+  return db.query(`
 
-  SELECT users.username, resources.*, ROUND(AVG(resource_reviews.rating),1) AS avg
-  FROM resources
-  JOIN users ON users.id = resources.owner_id
-  JOIN resource_reviews ON resource_reviews.resource_id = resources.id
-  WHERE resources.title LIKE $1
-  GROUP BY resources.id, users.username
-  ORDER BY created_at DESC;`, [`%${searchInput}%`])
+  SELECT images.*
+  FROM images
+  WHERE images.owner_id = $2
+  AND images.title LIKE $1 OR images.category LIKE $1
+  ORDER BY created_at DESC;`, [`%${searchInput}%`, user_id])
     .then(res => {
       console.log("res is: ", res.rows);
       // console.log("res.rows is, ", res.rows);
@@ -159,4 +157,4 @@ const getUserInfoByEmail = function (email) {
 
 // check if the existing email already exists or not in the database
 
-module.exports = {addImage, getImageByImageId, getAllImagesByUserId, getUserInfoByUserName, getUserInfoByEmail , getUserData, getResourceData, addUser};
+module.exports = {getAllImagesMatchingSearch, addImage, getImageByImageId, getAllImagesByUserId, getUserInfoByUserName, getUserInfoByEmail , getUserData, getResourceData, addUser};
