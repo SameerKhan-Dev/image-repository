@@ -1,3 +1,5 @@
+\c imagerep;
+
 DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
@@ -13,12 +15,20 @@ CREATE TABLE images (
   id SERIAL PRIMARY KEY NOT NULL,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
-  filePath TEXT NOT NULL,
+  filePath TEXT,
   description TEXT NOT NULL,
+  category TEXT DEFAULT 'OTHER',
   created_at TIMESTAMP DEFAULT NOW()
-
 );
 
+INSERT INTO users (
+    username, email, password)
+    VALUES (
+    'DevinSanders', 'tristanjacobs@gmail.com', 'hello' );
+INSERT INTO users (
+    username, email, password)
+    VALUES (
+    'IvaHarrison', 'allisonjackson@mail.com', 'hello2');
 
 INSERT INTO images (
     owner_id, title, filePath, description, created_at)
@@ -28,14 +38,4 @@ INSERT INTO images(
     owner_id,title, filePath, description, created_at)
     VALUES (
     2,'Baseball!', 'https://en.wikipedia.org/wiki/Baseball', 'This image is about baseball!','2014-04-23 04:05:06');
-
-
-INSERT INTO images (
-    username, email, password)
-    VALUES (
-    'DevinSanders', 'tristanjacobs@gmail.com', 'hello' );
-INSERT INTO users (
-    username, email, password)
-    VALUES (
-    'IvaHarrison', 'allisonjackson@mail.com', 'hello2');
 

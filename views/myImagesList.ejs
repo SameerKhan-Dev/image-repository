@@ -1,0 +1,49 @@
+<head>
+	<title>Filtered Images By Search</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <header>
+      <%- include('partials/header') %>
+    </header>
+    <div id="login">
+      <h3 class="text-center text-danger pt-5">MY IMAGES: (click on title links to view images)</h3>
+      <div class="main-resource">
+        <div class="container" style ="padding: 2px; background-color:#33cc33; border-radius: 3px; border: 1px solid black">
+          <div class="row">
+            <div class="col">
+              <p class="resource-data"><b>TITLE:</b></p>
+            </div>
+            <div class="col">
+              <p class="resource-data"><b>DESCRIPTION:</b></p>
+            </div>
+            <div class="col">
+              <p class="category-data"><b>CATEGORY / TAG:</b></p>
+            </div>
+  
+          </div>
+        <% for(let x = 0; x < allImages.length ; x++){ %>
+
+          <div class="container" style ="padding: 2px; background-color:#ccff99; border-radius: 3px;  border: 1px solid black">
+            <div class="row">
+              <div class="col">
+                <a class = "resourceTitleTag" href="/images/user/<%=allImages[x].id%>"><%= allImages[x].title%></a>
+              </div>
+              <div class="col">
+                <p class="resource-data"><%= allImages[x].description%></p>
+              </div>
+              <div class="col">
+                <p class="category-data"><%= allImages[x].category%></p>
+              </div>
+    
+            </div>
+          </div>
+        <% } %>
+      </div>
+  </div>
+</body>

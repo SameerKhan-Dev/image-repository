@@ -35,6 +35,8 @@ router.post("/addUser", (req, res) => {
 
 });
 
+
+
 // On Register Page 
 // add user (POST a user)
 // Route: /users/addUser

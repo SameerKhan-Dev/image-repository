@@ -12,20 +12,17 @@
       <%- include('partials/header') %>
     </header>
     <div id="login">
-      <h3 class="text-center text-danger pt-5">Results Matching Your Search:</h3>
+      <h3 class="text-center text-danger pt-5">Below is your selected image!</h3>
       <div class="main-resource">
-        <% for(let x = 0; x < allImages.length ; x++){ %>
           <article class="resource" style ="padding: 20px">
             <div class="info">
               <div>
-                <a class = "resourceTitleTag" href=<%= allImages[x].url %>> <%= allImages[x].title%></a>
+                <p class="resource-data"><%= imageInfo.title%></p>
+               
               </div>
-              <span class="name"><b>Creator: </b><%= allImages[x].username %><span>
             </div>
-            <p class="resource-data"><%= allImages[x].description%></p>
-            <a>DELETE!</a>
+            <p class="resource-data"><%= imageInfo.description%></p>
           </article>
-        <% } %>
       </div>
   </div>
 </body>

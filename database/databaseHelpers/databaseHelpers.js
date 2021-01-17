@@ -20,10 +20,22 @@ const getUserData = function (user_id) {
 
   return db.query(
     `SELECT * FROM users
-     WHERE id = ${user_id};
-  `)
+     WHERE id = $1;
+  `, [user_id])
   .then(result => {
-    return result.rows;
+    return result.rows[0];
+  });
+}
+
+
+const getUserInfoByUserName = function (username){
+
+  return db.query(
+    `SELECT * FROM users
+     WHERE username = $1;
+  `, [username])
+  .then(result => {
+    return result.rows[0];
   });
 
 }
@@ -34,19 +46,31 @@ const getResourceData = function (resource_id) {
 
   return db.query(
     `SELECT * FROM images
-     WHERE id = ${resource_id};
-  `)
+     WHERE id = $1;
+  `, [resource_id])
   .then(result => {
     return result.rows;
   });
 
 }
 // get all resources
-const getAllResources = function () {
+const getAllImagesByUserId = function (user_id) {
 
   return db.query(
-    `SELECT * FROM images;
-  `)
+    `SELECT * FROM images 
+     WHERE owner_id = $1
+  `, [user_id])
+  .then(result => {
+    return result.rows;
+  });
+}
+
+const getImageByImageId = function (image_id) {
+
+  return db.query(
+    `SELECT * FROM images 
+     WHERE images.id = $1
+  `, [image_id])
   .then(result => {
     return result.rows;
   });
@@ -63,18 +87,38 @@ const getAllResources = function () {
 
 
   // add a resource to the repository
-const addResource = function (owner_id, title,filePath, description) {
+const addImage = function (owner_id, title,filePath, description, category) {
 
   return db.query(
-    `INSERT INTO images (owner_id, title, filePath, description)
-     VALUES (${owner_id}, '${title}', '${filePath}', '${description}')
+    `INSERT INTO images (owner_id, title, filePath, description, category)
+     VALUES ($1, $2, $3, $4, $5)
      RETURNING *;
-  `)
+  `, [owner_id, title, filePath, description, category])
   .then(result => {
     return result.rows;
   });
 
 }
+
+const getAllResourcesMatchingSearch = function (searchInput) {
+  //searchInput = 'ball';
+  return pool.query(`
+
+  SELECT users.username, resources.*, ROUND(AVG(resource_reviews.rating),1) AS avg
+  FROM resources
+  JOIN users ON users.id = resources.owner_id
+  JOIN resource_reviews ON resource_reviews.resource_id = resources.id
+  WHERE resources.title LIKE $1
+  GROUP BY resources.id, users.username
+  ORDER BY created_at DESC;`, [`%${searchInput}%`])
+    .then(res => {
+      console.log("res is: ", res.rows);
+      // console.log("res.rows is, ", res.rows);
+      return res.rows;
+    })
+    .catch(err => console.log(err));
+
+  };
 
 // add a user to the database
 
@@ -90,8 +134,29 @@ const addUser = function (user_name, email, password) {
   });
 
 }
+// get user by email
+const getUserInfoByEmail = function (email) {
+
+  return db.query(`
+
+      SELECT * FROM users
+      WHERE email = $1`, [email])
+    .then(res => {
+      if (res.rows[0]) {
+
+        return res.rows[0];
+
+      } else {
+
+        return null;
+      }
+    })
+    .catch(err => console.log(err));
+
+}
+
 
 
 // check if the existing email already exists or not in the database
 
-module.exports = {getAllResources, getUserData, getResourceData, addUser, addResource};
+module.exports = {addImage, getImageByImageId, getAllImagesByUserId, getUserInfoByUserName, getUserInfoByEmail , getUserData, getResourceData, addUser};

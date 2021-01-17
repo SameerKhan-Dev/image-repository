@@ -1,5 +1,5 @@
 <head>
-	<title>Register Page - Image Repository</title>
+	<title>Login Page - Image Repository</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -7,32 +7,26 @@
 
   
   <style>
-    body {
-      background-image: url(backgroundImage.jpg);
-    }
+  
   </style>
 </head>
 <header>
-  <%- include('partials/header03') %>
+  <%- include('partials/header02') %>
 </header>
 
 <body> 
   <div style = "padding-left: 20%; padding-right: 20%">
-    <h3 style = "color:#4B0082 " class="text-center text-success pt-5"> REGISTER FORM</h3>
-    <form style = "border-radius: 25px; background-color: #e6e6e6; padding: 5%;" id = "addResourceForm" method = "post" class ="form" action = "/register">
-      <div class="form-group">
-        <label for="user-name">User Name:</label>
-        <input required type="text" name = "username" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Enter a User Name...">
-      </div> 
+    <h3 style = "color:#4B0082 " class="text-center text-success pt-5"> LOGIN FORM</h3>
+    <form style = "border-radius: 25px; background-color: #e6e6e6; padding: 5%;" id = "addResourceForm" method = "post" class ="form" action = "/login">
       <div class="form-group">
         <label for="user-name">Email</label>
-        <input required type="email" name = "email" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Enter an email...">
+        <input required type="email" name = "email" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Enter a user name...">
       </div>
       <div class="form-group">
           <label for="userPassword">Password</label>
           <input required type="password" name = "password" class="form-control" id="userPassword" placeholder="Password">
       </div>
-        <button style ="background-color:#4B0082" type="submit" class="btn btn-primary">Register!</button>
+        <button style ="background-color:#4B0082" type="submit" class="btn btn-primary">Login!</button>
     </form>
   </div>
 </body>
