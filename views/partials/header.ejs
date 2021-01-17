@@ -15,8 +15,8 @@
             <a style = "color: white ; margin-right: 2.5%; margin-left: 2.5%" class="nav-link active" aria-current="page" href="/images/myImages">View My Images</a>
           </li>
         </ul>
-        <form style = "margin-right: 10px" class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form action = "/images/search" method = "post" style = "margin-right: 10px" class="d-flex">
+          <input name = "searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button style = "color: white; background-color:#28a745 " class="btn btn-outline-success" type="submit">Search My Images</button>
         </form>
         <span style = "color: white; margin-right: 17.5%; margin-left: 2.5%">Logged in as: <%=email%> </span>
