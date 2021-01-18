@@ -17,11 +17,14 @@
           <article class="resource" style ="padding: 20px">
             <div class="info">
               <div>
-                <p class="resource-data"><%= imageInfo.title%></p>
-               
+                <p class="resource-data">
+                  <b>Title: </b><%= imageInfo.title%>
+                </p>
               </div>
             </div>
-            <p class="resource-data"><%= imageInfo.description%></p>
+            <p class="resource-data">
+              <b>Description: </b><%= imageInfo.description%>
+            </p>
             <img src="http://localhost:8080/images/serveImage/image.png?p=<%=imageInfo.filepath%>" width="500" height="600">
           </article>
       </div>

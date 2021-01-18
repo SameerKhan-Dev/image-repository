@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const databaseHelper = require('../database/databaseHelpers/databaseHelpers');
 
-const multer  = require('multer')
-
 const bcrypt = require('bcrypt');
 const creds = require('../creds');
 const AWS = require('aws-sdk');
@@ -13,9 +11,6 @@ const s3 = new AWS.S3({
 })
 
 const saltRounds = 10;
-
-var storage = multer.memoryStorage()
-var upload = multer({ storage: storage })
 
 router.get("/addImage", (req, res) => {
   let user_id = req.session.user_id;
@@ -42,7 +37,7 @@ router.get("/myImages", (req, res) => {
   let allImages;
   let email;
   
-  if(user_id){
+  if (user_id) {
     
     // user the user_id to retrieve all the images belonging to user.
     databaseHelper.getUserData(user_id)
@@ -54,14 +49,10 @@ router.get("/myImages", (req, res) => {
       return databaseHelper.getAllImagesByUserId(user_id)
     })
     .then (result => {
-      
       allImages = result;
-      
       let templateVars = {
-
         allImages: allImages,
         email: email,
-        
       }
       res.render('myImagesList', templateVars);
     });  
@@ -101,7 +92,7 @@ router.post("/search", (req, res) => {
 });
 
 
-router.get("/user/:image_id", (req, res) => {
+router.get("/view/:image_id", (req, res) => {
   let user_id = req.session.user_id;
   let image_id = req.params.image_id;
   let email;
@@ -208,7 +199,7 @@ router.post("/addImage", (req, res) => {
 
       databaseHelper.addImage(user_id,title, params.Key, description, category).then(result => {
         image_id = result[0].id;
-        res.redirect(`/images/user/${image_id}`);
+        res.redirect(`/images/view/${image_id}`);
       })
       .catch(err => {
         return res.send("error: couldnt upload image 2");

@@ -80,12 +80,9 @@ const getAllImagesMatchingSearch = function (searchInput, user_id) {
   WHERE images.owner_id = $2
     AND (images.title LIKE $1 OR images.category LIKE $1)
     ORDER BY created_at DESC;`;
-  console.log('queryString', queryString);
-  console.log('params:', [`%${searchInput}%`, user_id]);
 
   return db.query(queryString, [`%${searchInput}%`, user_id]
   ).then(res => {
-    console.log('res.rows:', res.rows);
     return res.rows;
   }).catch(err => console.log(err));
 };
