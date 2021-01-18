@@ -8,7 +8,10 @@ This image repository webapp allows users to store private images on the cloud. 
     - images are stored on AWS S3
     - images are only accessible by the owner of the image
   4. View all images belonging to the authenticated user
-  5. Search for images based on title or tag 
+  5. Search for images based on title or tag
+
+## Download & See the Demo Video Now!
+https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/demo.webm
 
 ## Tech Stack
 ### Backend: 
@@ -43,3 +46,22 @@ This section higlights areas where I would like to improve the app in the future
   7. Generate and add thumbnails for images in list view
   
 ## Screenshots of the App
+### Unauthenticated Home Page
+!["Unauthenticated Home Page"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/unauthenticated-homepage.png)
+
+### Registration Page
+!["Registration Page"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/registration-page.png)
+
+### Login Page
+!["Login Page"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/login-page.png)
+
+### Upload Image Page
+!["Upload Image Page"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/upload-image-page.png)
+
+### Image List Page
+!["Image List Page"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/user-image-list-page.png)
+
+### Image View Page
+!["Image View Page"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/view-image-page.png)
+
+
