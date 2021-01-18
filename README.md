@@ -11,7 +11,7 @@ This image repository webapp allows users to store private images on the cloud. 
   5. Search for images based on title or tag
 
 ## Download & See the Demo Video Now!
-!["Demo"](https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/demo.webm)
+https://github.com/SameerKhan-Dev/image-repository/blob/main/docs/demo.webm
 
 ## Tech Stack
 ### Backend: 
