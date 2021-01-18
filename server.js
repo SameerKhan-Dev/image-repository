@@ -1,6 +1,3 @@
-// load .env data into process.env
-require('dotenv').config();
-
 // Web server config
 const database = require('./database/database');
 const fileUpload = require('express-fileupload');
