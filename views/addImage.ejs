@@ -25,7 +25,7 @@
 <body> 
   <div style = "padding-left: 20%; padding-right: 20%">
     <h3 style = "color:#4B0082 " class="text-center text-success pt-5"> NEW IMAGE FORM</h3>
-    <form style = "background-color: #e6e6e6; padding: 5%;" id = "addResourceForm" method = "post" class ="form" action = "/images/addImage">
+    <form method="post" enctype="multipart/form-data" action="/images/addImage" id="addResourceForm" class="form" style="background-color: #e6e6e6; padding: 5%;">
       <div class="form-group">
         <label for="user-name"><b>Title</b></label>
         <input required type="text" name = "title" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Enter a title...">
